@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  StylizedStrings
+
+  Created by Yerassyl Zhassuzakhov on 13.09.2024.
+  
+*/
+
+"offerBannerText" = "<b>от 445 ₽</b>\n<strike>625 ₽</strike>\nза урок";
