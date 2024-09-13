@@ -13,7 +13,6 @@ extension NSMutableAttributedString {
     }
 
     func strikedThrough(withFont font: UIFont, color: UIColor) -> NSMutableAttributedString {
-//        let color: UIColor = UIColor(hexNum: 0xB2B2B2)
         return stylizedByTags(
             openTag: "<strike>",
             closeTag: "</strike>",
@@ -27,8 +26,6 @@ extension NSMutableAttributedString {
     }
 
     func stylizedByTags(openTag: String, closeTag: String, attributes: [NSAttributedString.Key: Any]) -> NSMutableAttributedString {
-        let tempAttrString = self
-        let string = tempAttrString.string
         let stringLength: Int = string.count
 
         var rangesToRemove: [NSRange] = []
@@ -54,7 +51,7 @@ extension NSMutableAttributedString {
                 } else if secondRange == nil {
                     secondRange = foundRange
                     let targetRange = mergeTwoRanges(first: firstRange!, second: foundRange)
-                    tempAttrString.addAttributes(attributes, range: targetRange)
+                    addAttributes(attributes, range: targetRange)
                     rangesToRemove.append(firstRange!)
                     rangesToRemove.append(foundRange)
                     firstRange = nil
@@ -68,9 +65,9 @@ extension NSMutableAttributedString {
             }
         }
         rangesToRemove.reversed().forEach {
-            tempAttrString.deleteCharacters(in: $0)
+            deleteCharacters(in: $0)
         }
-        return tempAttrString
+        return self
     }
 
     func mergeTwoRanges(first firstRange: NSRange, second secondRange: NSRange) -> NSRange {
